@@ -1,16 +1,22 @@
 /* CSS code */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    background-color: white;;
   }
+ .main-container {
+    width: 60%; /* Set the width of the container to 75% of the viewport width */
+    margin: 0 auto; /* Horizontally center the container */
+    background-color: #F3F0EC; /* Or any desired background color for the content area */
+}
   
   header {
-    background-color: #0f2044;
-    color: #fcb900;
+    background-color: white;
+    color: #300D38;
     padding: 20px;
-    text-align: center;
+    text-align: left;
   }
   
   nav {

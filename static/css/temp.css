@@ -120,35 +120,26 @@
 #resultsList li:hover {
     background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
 }
-.category-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 
 .category-btn {
-    background-color: #F3F0EC;  /* Dark blue background */
-    color: #300D38;  /* Yellow text */
+    background-color: #0f2044;  /* Dark blue background */
+    color: #fcb900;  /* Yellow text */
     border: none;  /* Remove default border */
     padding: 0;  /* Removing padding, since we'll define a width and height */
     margin: 5px;  /* Margin between each button */
-    flex: 1 1 calc(20% - 10px); /* Allows for 5 buttons with a 10px margin */
-    height: 120px;  /* Define a height for the square */
+    width: 120px;  /* Define a width for the square */
+    height: 120px;  /* Define a height to match the width, making it square */
     border-radius: 5px;  /* Slightly rounded corners */
-    font-size: 19px;  /* Font size */
+    font-size: 14px;  /* Font size */
     cursor: pointer;  /* Change cursor to a hand when hovering over */
     transition: background-color 0.3s, transform 0.3s;  /* Smooth transition for hover and active states */
     display: flex;  /* Making use of Flexbox */
     justify-content: center;  /* Center content horizontally */
     align-items: center;  /* Center content vertically */
-    text-align: center; /* to center the button text */
-    overflow: hidden; /* prevents content overflow */
-    white-space: nowrap; /* prevents wrapping inside the button */
-    text-overflow: ellipsis; /* adds "..." for longer text */
 }
 
 .category-btn:hover {
-    background-color: #E8E6E3;  /* Yellow background on hover */
+    background-color: #fcb900;  /* Yellow background on hover */
     color: #0f2044;  /* Dark blue text on hover */
 }
 

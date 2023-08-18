@@ -16,10 +16,12 @@
     <header>
         <h1 id="title">Fetch Rewards</h1>
     </header>
+    <div class="main-container">
+
     <div class="form-container">
-    <label for="image-name">Search offers by entering a Retailer(ex Target), a Brand(ex Pepsi) or a Product(ex Diapers):</label>
+    <label for="image-name">Find Your Favourite Deals</label>
     <div class="relative">
-        <input title="Search all categories"
+        <input title="Search Product, Brand or Category"
                class="search-input inline-block w-full rounded-full border-[2px] border-gray-light py-2 pr-6 pl-12 text-[14px] shadow-[0px_2px_10px_rgba(0,0,0,0.25)] focus:border-fetch-dark-purple focus-visible:outline-none sm:text-[19px] md:py-3"
                id="image-name"
                oninput="toggleSearchBtn()"
@@ -30,13 +32,17 @@
 
     <!-- Display JSON data here -->
     <div id="resultsContainer">
-        <h2>Results</h2>
+<!--        <h2>Results</h2>-->
         <p id="originalWord"></p>
         <p id="bestMatch"></p>
         <p id="similarityScore"></p>
         <ul id="resultsList"></ul>
     </div>
+        <div class="category-buttons">
+        <!-- Buttons will be populated here dynamically using JavaScript -->
+    </div>
 
+    </div>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
@@ -51,12 +57,46 @@
         }
     }
     // ... Your existing scripts ...
-</script>
+    categories = [
+    "Baby",
+    "Baking",
+    "Beauty",
+    "Beer, Hard Cider & Seltzer",
+    "Beverages",
+    "Bread & Bakery",
+    "Breakfast & Cereal",
+    "Candy & Chocolate",
+    "Canned Goods & Soups",
+    "Cleaning & Home Improvement",
+    "Condiments & Sauces",
+    "Dairy & Refrigerated",
+    "Frozen",
+    "Grocery",
+    "Gum & Mints",
+    "Health & Wellness",
+    "Household",
+    "Meat & Seafood",
+    "Oral Care",
+    "Personal Care"
+];
+    function quickSearch(category) {
+        document.getElementById('image-name').value = category;
+        Search();
+    }
+// Get the container where we want to append the buttons
+    const container = document.querySelector('.category-buttons');
 
+    // Create a button for each category and append it to the container
+   categories.forEach(category => {
+    const btn = document.createElement('button');
+    btn.innerText = category;
+    btn.onclick = () => quickSearch(category);
+    btn.className = "category-btn"; // Assign the category-btn class to the button
+    container.appendChild(btn);
+});
 
-    <script>
         function Search() {
-            var search_item = document.getElementById("image-name").value;
+        var search_item = document.getElementById("image-name").value;
             console.log(search_item);
             var search_dict = { "search_item": search_item };
 
