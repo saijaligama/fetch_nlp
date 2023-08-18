@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Classification</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/img_style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<!--  <style>-->
+
+<!--  </style>-->
+
+
+
+</head>
+
+<body>
+    <header>
+        <h1 id="title">Fetch Rewards</h1>
+    </header>
+    <div class="form-container">
+    <label for="image-name">Search offers by entering a Retailer(ex Target), a Brand(ex Pepsi) or a Product(ex Diapers):</label>
+    <div class="relative">
+        <input title="Search all categories"
+               class="search-input inline-block w-full rounded-full border-[2px] border-gray-light py-2 pr-6 pl-12 text-[14px] shadow-[0px_2px_10px_rgba(0,0,0,0.25)] focus:border-fetch-dark-purple focus-visible:outline-none sm:text-[19px] md:py-3"
+               id="image-name"
+               oninput="toggleSearchBtn()"
+               placeholder="Search all categories">
+        <button onclick="Search()" class="search-btn">SEARCH</button>
+    </div>
+</div>
+
+    <!-- Display JSON data here -->
+    <div id="resultsContainer">
+        <h2>Results</h2>
+        <p id="originalWord"></p>
+        <p id="bestMatch"></p>
+        <p id="similarityScore"></p>
+        <ul id="resultsList"></ul>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+    <script>
+    function toggleSearchBtn() {
+        const inputVal = document.getElementById('image-name').value;
+        const searchBtn = document.querySelector('.search-btn');
+        if (inputVal.trim()) {
+            searchBtn.style.display = 'block';
+        } else {
+            searchBtn.style.display = 'none';
+        }
+    }
+    // ... Your existing scripts ...
+</script>
+
+
+    <script>
+        function Search() {
+            var search_item = document.getElementById("image-name").value;
+            console.log(search_item);
+            var search_dict = { "search_item": search_item };
+
+            $.ajax({
+                url: '/search',
+                data: JSON.stringify(search_dict),
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log("success");
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else {
+                        // Assuming the response body has the JSON data
+                        populateResults(response);
+                    }
+                },
+                error: function (data2) {
+                    console.log(data2);
+                }
+            });
+        }
+
+        function populateResults(data) {
+            document.getElementById("originalWord").textContent = data['Original Word'];
+            document.getElementById("bestMatch").textContent = data['Best Match'];
+            document.getElementById("similarityScore").textContent = data['Similarity Score'];
+
+            var resultsList = document.getElementById("resultsList");
+            resultsList.innerHTML = ""; // Clear previous results
+            data.results.forEach(function(result) {
+                var li = document.createElement("li");
+                li.textContent = result;
+                resultsList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+
+</html>

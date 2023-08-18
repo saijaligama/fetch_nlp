@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Classification</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/img_style.css">
+  <style>
+    .blue-form {
+      background-color: #0f2044;
+      color: white;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .navigation {
+      display: flex;
+      list-style-type: none;
+      padding: 10;
+      margin: 10;
+      justify-content: center;
+    }
+
+    .button2, .button {
+      margin: 0 10px;
+
+      list-style-type: none;
+
+    }
+
+    .button2, .button {
+      text-decoration: none;
+      color: #333;
+      padding: 5px;
+      border: 1px solid #333;
+      border-radius: 5px;
+    }
+
+    .button2:hover, .button:hover
+     {
+      background-color: #0f2044;
+      color: #fcb900;
+    }
+    .image-form button {
+      text-decoration: none;
+      color: #333;
+      padding: 5px;
+      border: 1px solid #333;
+      border-radius: 5px;
+    }
+    .button1 {
+        margin: 0 10px;
+    padding: 5px;
+
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #0f2044;
+      color: #fcb900;
+    }
+
+
+
+    .file-input-label {
+        text-decoration: none;
+      color: #333;
+      padding: 5px;
+      border: 1px solid #333;
+      border-radius: 5px;
+    }
+    /* Container for the label and input */
+        .form-container {
+            text-align: center;
+        }
+
+        label {
+            font-size: 24px; /* Increase font size */
+            display: block; /* Put on a separate line */
+            margin-bottom: 20px; /* Some space after the label */
+        }
+
+        input[type="text"] {
+            font-size: 20px; /* Increase font size */
+            padding: 10px 15px; /* Inner spacing for comfort */
+            width: 270px; /* Set a specific width */
+            border-radius: 5px; /* Round corners */
+            border: 2px solid #ccc; /* Border color */
+        }
+        input[type="button"] {
+            font-size: 20px; /* Increase font size */
+            padding: 10px 15px; /* Inner spacing for comfort */
+            width: 150px; /* Set a specific width */
+            border-radius: 5px; /* Round corners */
+            border: 2px solid #ccc; /* Border color */
+        }
+
+        .relative {
+        position: relative;
+        width: 100%;
+        max-width: 410px;
+        margin: 0 auto;
+    }
+
+        .btn {
+            background-color: #fcb900;
+            border: none;
+            color: #333;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .btn--deep-purple {
+            background-color: #0f2044;
+        }
+
+        .btn__primary {
+            color: #fcb900;
+        }
+        .search-input {
+    width: 100%;
+    padding: 10px 0px;
+    padding-left: 20px;
+    padding-right: 0px;  /* Adjust the padding so that the text doesn't go behind the button. */
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Rounding the edges */
+}
+
+    .search-btn {
+    position: absolute;
+    right: 0;  /* Position it close to the right edge of the input */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #0f2044;
+    border: none;
+    color: #fcb900;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px; /* rounded edges */
+    cursor: pointer;
+    display: none; /* initially hidden */
+
+}
+  </style>
+
+
+
+</head>
+
+<body>
+    <header>
+        <h1 id="title">Fetch Rewards</h1>
+    </header>
+    <div class="form-container">
+    <label for="image-name">Search offers by entering a Retailer(ex Target), a Brand(ex Pepsi) or a Product(ex Diapers):</label>
+    <div class="relative">
+        <input title="Search all categories"
+               class="search-input inline-block w-full rounded-full border-[2px] border-gray-light py-2 pr-6 pl-12 text-[14px] shadow-[0px_2px_10px_rgba(0,0,0,0.25)] focus:border-fetch-dark-purple focus-visible:outline-none sm:text-[19px] md:py-3"
+               id="image-name"
+               oninput="toggleSearchBtn()"
+               placeholder="Search all categories">
+        <button onclick="Search()" class="search-btn">SEARCH</button>
+    </div>
+</div>
+
+    <!-- Display JSON data here -->
+    <div id="resultsContainer">
+        <h2>Results</h2>
+        <p id="originalWord"></p>
+        <p id="bestMatch"></p>
+        <p id="similarityScore"></p>
+        <ul id="resultsList"></ul>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+    <script>
+    function toggleSearchBtn() {
+        const inputVal = document.getElementById('image-name').value;
+        const searchBtn = document.querySelector('.search-btn');
+        if (inputVal.trim()) {
+            searchBtn.style.display = 'block';
+        } else {
+            searchBtn.style.display = 'none';
+        }
+    }
+    // ... Your existing scripts ...
+</script>
+
+
+    <script>
+        function Search() {
+            var search_item = document.getElementById("image-name").value;
+            console.log(search_item);
+            var search_dict = { "search_item": search_item };
+
+            $.ajax({
+                url: '/search',
+                data: JSON.stringify(search_dict),
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log("success");
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else {
+                        // Assuming the response body has the JSON data
+                        populateResults(response);
+                    }
+                },
+                error: function (data2) {
+                    console.log(data2);
+                }
+            });
+        }
+
+        function populateResults(data) {
+            document.getElementById("originalWord").textContent = data['Original Word'];
+            document.getElementById("bestMatch").textContent = data['Best Match'];
+            document.getElementById("similarityScore").textContent = data['Similarity Score'];
+
+            var resultsList = document.getElementById("resultsList");
+            resultsList.innerHTML = ""; // Clear previous results
+            data.results.forEach(function(result) {
+                var li = document.createElement("li");
+                li.textContent = result;
+                resultsList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+
+</html>
