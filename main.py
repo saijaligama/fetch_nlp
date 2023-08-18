@@ -26,7 +26,7 @@ def search():
 
         catBrandCat = pd.merge(brandCategory,categories, left_on="BRAND_BELONGS_TO_CATEGORY",right_on="PRODUCT_CATEGORY")
 
-        print(categories.shape,brandCategory.shape, catBrandCat.shape)
+        ###print(categories.shape,brandCategory.shape, catBrandCat.shape)
 
         catBrandRetailer = pd.merge(catBrandCat,offerRetailer, on="BRAND")
 
