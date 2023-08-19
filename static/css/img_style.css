@@ -4,7 +4,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: white;;
+    background-color: #F9F7F2;;
   }
  .main-container {
     width: 60%; /* Set the width of the container to 75% of the viewport width */
@@ -13,7 +13,7 @@ body {
 }
   
   header {
-    background-color: white;
+    background-color: #F9F7F2;
     color: #300D38;
     padding: 20px;
     text-align: left;
