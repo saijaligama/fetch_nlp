@@ -98,7 +98,7 @@
         function Search() {
         var search_item = document.getElementById("image-name").value;
             console.log(search_item);
-            var search_dict = { "search_item": search_item };
+            var search_dict = { "search_query": search_item };
 
             $.ajax({
                 url: '/search',
