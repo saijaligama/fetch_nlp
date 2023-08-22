@@ -8,7 +8,7 @@ from scripts.utils.category_util import category_offer
 
 
 class SearchHandler:
-    SIMILARITY_THRESHOLD = 50
+    SIMILARITY_THRESHOLD = 80
 
     def __init__(self):
         data_loader = DataLoader()

@@ -4,10 +4,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F9F7F2;;
+    background-color: #F9F7F2;
+
   }
  .main-container {
-    width: 60%; /* Set the width of the container to 75% of the viewport width */
+     width: 60%;/* Set the width of the container to 75% of the viewport width */
     margin: 0 auto; /* Horizontally center the container */
     background-color: #F3F0EC; /* Or any desired background color for the content area */
 }

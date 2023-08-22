@@ -8,13 +8,20 @@
 
 <!--  </style>-->
 
-
+<style>
+        header a {
+            float: right;
+            margin-right: 10px;
+             color: #300D38 /* Optional: Add some margin to the right for spacing */
+        }
+    </style>
 
 </head>
 
 <body>
     <header>
         <h1 id="title">Fetch Rewards</h1>
+        <a href = "/data_exp" >Data Exploration</a>
     </header>
     <div class="main-container">
 
@@ -25,7 +32,7 @@
                class="search-input inline-block w-full rounded-full border-[2px] border-gray-light py-2 pr-6 pl-12 text-[14px] shadow-[0px_2px_10px_rgba(0,0,0,0.25)] focus:border-fetch-dark-purple focus-visible:outline-none sm:text-[19px] md:py-3"
                id="image-name"
                oninput="toggleSearchBtn()"
-               placeholder="Search all categories">
+               placeholder="Search Product, Brand or Category">
         <button onclick="Search()" class="search-btn">SEARCH</button>
     </div>
 </div>
@@ -58,26 +65,21 @@
     }
     // ... Your existing scripts ...
     categories = [
-    "Baby",
-    "Baking",
+    "Alcohol",
+    "Snacks",
     "Beauty",
-    "Beer, Hard Cider & Seltzer",
-    "Beverages",
-    "Bread & Bakery",
-    "Breakfast & Cereal",
-    "Candy & Chocolate",
-    "Canned Goods & Soups",
-    "Cleaning & Home Improvement",
-    "Condiments & Sauces",
-    "Dairy & Refrigerated",
     "Frozen",
-    "Grocery",
-    "Gum & Mints",
-    "Health & Wellness",
-    "Household",
-    "Meat & Seafood",
-    "Oral Care",
-    "Personal Care"
+    "Beverages",
+    "Pepsi",
+    "Gatorade",
+    "Butterball",
+    "Ben and Jerrys",
+    "Beyond Meat",
+    "Walmart",
+    "Caseys",
+    "Amazon",
+    "Target",
+    "Albertsons",
 ];
     function quickSearch(category) {
         document.getElementById('image-name').value = category;
