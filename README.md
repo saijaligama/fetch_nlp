@@ -36,7 +36,6 @@ Or else
    ```
 
 3. **Install required libraries**:
-   You need to have Flask and FuzzyWuzzy installed. You can install them via pip:
    ```
    pip install -r requirements.txt
    ```
