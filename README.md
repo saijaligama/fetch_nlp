@@ -20,7 +20,7 @@ The Fetch Intelligent Search Tool is a web-based application aimed at providing 
 
 ## Getting Started
 
-The application should be live on http://18.209.174.175:8000/ 
+The application should be live on  **http://18.209.174.175:8000/**
 this should be live untill 08/31/2023 
 
 Or else
@@ -61,7 +61,6 @@ Named Entity Recognition (NER): Extract specific entities like brand names, prod
 
 Query Expansion: Expand user queries with synonyms or related terms to broaden the search horizon and capture more potential offers. For instance, if a user searches for "soda", the tool can also look for offers related to "cola", "soft drink", and "carbonated beverage".
 
-Spell Check and Correction: Integrate a spell-checking mechanism to handle and correct potential typos or misspellings in user queries, ensuring they still get relevant results.
 
 Live Database Integration: Transition from static CSV files to a live database for real-time, up-to-date offers and faster query processing.
 ## Notes
@@ -69,4 +68,3 @@ Make sure to have your CSV datasets (`brand_category.csv`, `categories.csv`, `of
 
 ---
 
-Please replace placeholders (like `[URL-of-your-GitHub-repository]`) with actual details. This README provides a clear introduction to your project, a brief overview of its features, technical details, and instructions on how to set it up and use it.
